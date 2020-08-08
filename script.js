@@ -10,11 +10,14 @@ $(document).ready(function(){
   // Functions
   const updateSelectedCount = () => {
     const selectedSeats = $('.row .seat.selected')
+    const seatsIndex = [...selectedSeats].map(seat => [...seats].indexOf(seat))
+
+    localStorag.setItem('selectedSeats', JSON.stringify(seatsIndex))
+
     const selectedSeatsCount = selectedSeats.length
     count.text(selectedSeatsCount)
     total.text(selectedSeatsCount * ticketPrice)
   }
-
 
   // Event listeners
   movie.change(e => {
