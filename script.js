@@ -24,15 +24,18 @@ $(document).ready(function(){
     localStorage.setItem('selectedMoviePrice', moviePrice)
   }
 
-  const populateUI = () => {
+  function populateUI() {
     const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'))
     if (selectedSeats !== null && selectedSeats.length > 0) {
-      seats.forEach(seat => console.log(seat))
-      // seats.forEach((seat, index) => {
-      //   if (selectedSeats.indexOf(index) > -1) {
-      //     seat.classList.add('selected')
-      //   }
-      // })
+      seats.each((index, seat) => {
+        if (selectedSeats.indexOf(index) > -1) {
+          seat.classList.add('selected')
+        }
+      })
+    }
+    const selectedMovieIndex = localStorage.getItem('selectedMovieIndex')
+    if (selectedMovieIndex !== null) {
+      movie.selectedIndex = selectedMovieIndex
     }
   }
 
@@ -52,5 +55,7 @@ $(document).ready(function(){
       updateSelectedCount()
     }
   })
+
+  updateSelectedCount();
 
 });
